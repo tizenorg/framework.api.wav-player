@@ -1,13 +1,8 @@
+#sbs-git:slp/api/wav-player capi-media-wav-player 0.1.0 8d904bb3bd0ca7fa01ebd8f4185e4b993d94c08d
 Name:       capi-media-wav-player
-Summary:    A wav player library in Tizen C API
-%if 0%{?tizen_profile_mobile}
-Version: 0.1.0
-Release:    16
-%else
-Version:    0.1.2
+Summary:    A wav player library in SLP C API
+Version:    0.1.12
 Release:    0
-VCS:        framework/api/wav-player#capi-media-wav-player_0.1.0-10_1-3-g8d8a814371b4a4fd114ccfd8b8ed61b8655e699f
-%endif
 Group:      TO_BE/FILLED_IN
 License:    Apache License, Version 2.0
 Source0:    %{name}-%{version}.tar.gz
@@ -18,17 +13,17 @@ BuildRequires:  pkgconfig(capi-base-common)
 BuildRequires:  pkgconfig(capi-media-sound-manager)
 Requires(post): /sbin/ldconfig  
 Requires(postun): /sbin/ldconfig
+Requires(post): libprivilege-control
 
 %description
 
 
 %package devel
-Summary:  A wav player library in Tizen C API (Development)
+Summary:  A wav player library in SLP C API (Development)
 Group:    TO_BE/FILLED_IN
 Requires: %{name} = %{version}-%{release}
 
 %description devel
-
 
 
 %prep
@@ -36,37 +31,22 @@ Requires: %{name} = %{version}-%{release}
 
 
 %build
-%if 0%{?tizen_profile_mobile}
-cd mobile
-%else
-cd wearable
-%endif
 MAJORVER=`echo %{version} | awk 'BEGIN {FS="."}{print $1}'`
-%if 0%{?tizen_profile_mobile}
-%cmake . -DFULLVER=%{version} -DMAJORVER=${MAJORVER}
-%else
 cmake . -DCMAKE_INSTALL_PREFIX=/usr -DFULLVER=%{version} -DMAJORVER=${MAJORVER}
-%endif
 
 make %{?jobs:-j%jobs}
 
 %install
 rm -rf %{buildroot}
-%if 0%{?tizen_profile_mobile}
-cd mobile
-%else
-cd wearable
-%endif
 mkdir -p %{buildroot}/usr/share/license
-%if 0%{?tizen_profile_mobile}
-cp LICENSE.APLv2 %{buildroot}/usr/share/license/%{name}
-%else
 cp LICENSE %{buildroot}/usr/share/license/%{name}
-%endif
+mkdir -p %{buildroot}/usr/share/privilege-control
 
 %make_install
 
-%post -p /sbin/ldconfig
+%post
+/sbin/ldconfig
+/usr/bin/api_feature_loader --verbose --dir=/usr/share/privilege-control
 
 %postun -p /sbin/ldconfig
 
@@ -74,11 +54,7 @@ cp LICENSE %{buildroot}/usr/share/license/%{name}
 %files
 %{_libdir}/libcapi-media-wav-player.so.*
 %{_datadir}/license/%{name}
-%if 0%{?tizen_profile_mobile}
-%manifest mobile/capi-media-wav-player.manifest
-%else
-%manifest wearable/capi-media-wav-player.manifest
-%endif
+%manifest capi-media-wav-player.manifest
 
 %files devel
 %{_includedir}/media/*.h

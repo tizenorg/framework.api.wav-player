@@ -21,24 +21,25 @@
 
 /**
  * @file wave_player_doc.h
- * @brief File contains the high level documentation for the WAV Player API.
+ * @brief This file contains high level documentation for the WAV Player API.
  *
  */
 
 /**
- * @defgroup CAPI_MEDIA_WAV_PLAYER_MODULE WAV Player
  * @ingroup CAPI_MEDIA_FRAMEWORK
+ * @defgroup CAPI_MEDIA_WAV_PLAYER_MODULE WAV Player
  */
 
 /**
- * @addtogroup CAPI_MEDIA_WAV_PLAYER_MODULE
- * @brief The @ref CAPI_MEDIA_WAV_PLAYER_MODULE API  provides functions for playing the Waveform Audio File Format. (*.wav)
  * @ingroup CAPI_MEDIA_FRAMEWORK
+ * @addtogroup CAPI_MEDIA_WAV_PLAYER_MODULE
+ * @brief The @ref CAPI_MEDIA_WAV_PLAYER_MODULE API provides functions for playing the waveform audio file format(*.wav).
   * @section CAPI_MEDIA_WAV_PLAYER_MODULE_HEADER Required Header
  *    \#include <wav_player.h>
  *
  * @section CAPI_MEDIA_WAV_PLAYER_OVERVIEW Overview
- * The @ref CAPI_MEDIA_WAV_PLAYER_MODULE API allows you to simply play and stop a wav file. To play a certain wav file, call wave_player_start() with a path to the .wav file. When playing a wav file is finished, wav_player_playback_completed_cb() will be invoked.
+ * The @ref CAPI_MEDIA_WAV_PLAYER_MODULE API allows you to simply play and stop a wav file. To play a certain wav file, call wave_player_start() with a path to the .wav file. 
+ * When playing a wav file is finished, wav_player_playback_completed_cb() will be invoked.
  */
 
 #endif /* __TIZEN_MEDIA_WAV_PLAYER_DOC_H__ */
