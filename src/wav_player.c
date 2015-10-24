@@ -80,4 +80,3 @@ int wav_player_stop(int id)
 {
 	return __convert_wav_player_error_code(__func__, mm_sound_stop_sound(id));
 }
-

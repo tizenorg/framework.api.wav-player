@@ -41,10 +41,10 @@ extern "C"
  */
 typedef enum
 {
-    WAV_PLAYER_ERROR_NONE        = TIZEN_ERROR_NONE,                      /**< Successful */
-    WAV_PLAYER_ERROR_INVALID_PARAMETER = TIZEN_ERROR_INVALID_PARAMETER,       /**< Invalid parameter */
-    WAV_PLAYER_ERROR_INVALID_OPERATION = TIZEN_ERROR_INVALID_OPERATION,       /**< Invalid operation */
-    WAV_PLAYER_ERROR_FORMAT_NOT_SUPPORTED = TIZEN_ERROR_WAV_PLAYER | 0x01 			  /**< Format not supported */
+    WAV_PLAYER_ERROR_NONE                 = TIZEN_ERROR_NONE,                  /**< Successful */
+    WAV_PLAYER_ERROR_INVALID_PARAMETER    = TIZEN_ERROR_INVALID_PARAMETER,     /**< Invalid parameter */
+    WAV_PLAYER_ERROR_INVALID_OPERATION    = TIZEN_ERROR_INVALID_OPERATION,     /**< Invalid operation */
+    WAV_PLAYER_ERROR_FORMAT_NOT_SUPPORTED = TIZEN_ERROR_WAV_PLAYER | 0x01      /**< Format not supported */
 } wav_player_error_e;
 
 /**
@@ -60,13 +60,13 @@ typedef void (*wav_player_playback_completed_cb)(int id, void *user_data);
 /**
  * @brief Plays a WAV file.
  * @since_tizen @if MOBILE 2.3 @elseif WEARABLE 2.3.1 @endif
- * @param[in] path	The WAV file path to the file to be played
+ * @param[in] path	The file path to play
  * @param[in] type	The sound type
  * @param[in] callback	The callback function to be invoked when a WAV file is no longer being played
  * @param[in] user_data	The user data to be passed to the callback function
  * @param[out] id	The WAV player ID (can be set to @c NULL)
  *
- * @return @c 0 on success, 
+ * @return @c 0 on success,
  *         otherwise a negative error value
  * @retval #WAV_PLAYER_ERROR_NONE Successful
  * @retval #WAV_PLAYER_ERROR_INVALID_PARAMETER Invalid parameter
